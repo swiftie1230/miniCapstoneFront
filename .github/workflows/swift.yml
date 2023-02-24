@@ -20,9 +20,9 @@ jobs:
       run: |
         xcodebuild build test -project miniCapstoneFront.xcodeproj -scheme miniCapstoneFront -destination "platform=iOS Simulator,name=iPhone 11"
     
-    - name: Run tests
-      run: | 
-        xcodebuild clean test -project miniCapstoneFront.xcodeproj -scheme miniCapstoneFront -destination "platform=iOS Simulator,name=iPhone 11"
+    #- name: Run tests
+      #run: | 
+        #xcodebuild clean test -project miniCapstoneFront.xcodeproj -scheme miniCapstoneFront -destination "platform=iOS Simulator,name=iPhone 11"
  
  
   # slack alarm 
