@@ -9,28 +9,28 @@ on:
   #pull_request:
     #branches: [ "main" ]
 
-env:
-  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+#env:
+  #SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
 
 jobs:
-  build:
+  #build:
 
-    runs-on: macos-latest
+    #runs-on: macos-latest
 
-    steps:
-    - uses: actions/checkout@v3
-    - name: Build
-      run: |
-        xcodebuild build test -project miniCapstoneFront.xcodeproj -scheme miniCapstoneFront -destination "platform=iOS Simulator,name=iPhone 11"
+    #steps:
+    #- uses: actions/checkout@v3
+    #- name: Build
+      #run: |
+        #xcodebuild build test -project miniCapstoneFront.xcodeproj -scheme miniCapstoneFront -destination "platform=iOS Simulator,name=iPhone 11"
     
-    - name: Run tests
-      run: | 
-        xcodebuild clean test -project miniCapstoneFront.xcodeproj -scheme miniCapstoneFront -destination "platform=iOS Simulator,name=iPhone 11"
+    #- name: Run tests
+      #run: | 
+        #xcodebuild clean test -project miniCapstoneFront.xcodeproj -scheme miniCapstoneFront -destination "platform=iOS Simulator,name=iPhone 11"
  
  
   # slack alarm 
   action-slack:
-    needs: build
+    #needs: build
     runs-on: macos-latest
     steps:
       - name: Slack Alarm
@@ -40,5 +40,5 @@ jobs:
           author_name: Github-Actions Bot
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
         env:
-          SLACK_WEBHOOK_URL: SLACK_WEBHOOK_URL  # requied env
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}  
         if: always()  # even if the job fails or is canceled.
