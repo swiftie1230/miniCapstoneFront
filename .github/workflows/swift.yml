@@ -9,9 +9,6 @@ on:
   #pull_request:
     #branches: [ "main" ]
 
-env:
-  SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
 jobs:
   build:
 
@@ -40,5 +37,5 @@ jobs:
           author_name: Github-Actions Bot
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
         env:
-          SLACK_WEBHOOK_URL: SLACK_WEBHOOK_URL  # requied env
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}  # requied env
         if: always()  # even if the job fails or is canceled.
