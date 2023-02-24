@@ -5,9 +5,9 @@ name: Swift
 
 on:
   push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    branches: [ "develop" ]
+  #pull_request:
+    #branches: [ "main" ]
 
 env:
   SLACK_WEBHOOK_URL_CICD: ${{ secrets.SLACK_WEBHOOK_URL_CICD }}
