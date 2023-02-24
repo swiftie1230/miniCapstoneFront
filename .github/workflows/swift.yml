@@ -19,8 +19,24 @@ jobs:
     - name: Build
       run: |
         xcodebuild build test -project miniCapstoneFront.xcodeproj -scheme miniCapstoneFront -destination "platform=iOS Simulator,name=iPhone 11"
-      #swift build -v
     - name: Run tests
       run: | 
         xcodebuild clean test -project miniCapstoneFront.xcodeproj -scheme miniCapstoneFront -destination "platform=iOS Simulator,name=iPhone 11"
-#swift test -v
+  
+  notification:
+    name: Notification
+    runs-on: macos-latest #ubuntu-latest
+    if: ${{ always() }}  #성공하든 실패하든 항상 notification Job 실행
+    needs: build  #job들의 id들을 적어줍니다.
+    steps:
+      - uses: martialonline/workflow-status@v3
+        id: check
+      - name: action-slack
+        uses: 8398a7/action-slack@v3
+        with:
+          status: ${{ steps.check.outputs.status }} #workflow의 결과를 받아옴
+          author_name: Github Action Bot
+          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
+        env:
+          SLACK_WEBHOOK_URL: ${{ https://hooks.slack.com/services/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 }} # Webhook Secret Key
+        if: always()
