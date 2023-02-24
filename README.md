@@ -1,4 +1,4 @@
-# miniCapstoneFront🌷
+# miniCapstoneFront Demo 🌷
 ## 캡스톤 두번째 프로젝트 : with SwiftUI
 
 ![iOS 16.2](https://img.shields.io/badge/iOS-16.2-lightgrey?style=flat&color=181717)
